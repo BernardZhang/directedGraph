@@ -22,6 +22,21 @@
     <pre id="data"></pre>
     <script src="node_modules/dagre/dist/dagre.min.js"></script>
     <script src="node_modules/echarts/dist/echarts.min.js"></script>
+    <script src="data.js"></script>
     <script src="index.js"></script>
+
+
+    <style type='text/css'>
+        svg { border: 1px solid black; }
+        svg div { border: 1px dotted blue; }
+    </style>
+    <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+        <foreignObject class="node" x="46" y="22" width="200" height="300">
+            <body xmlns="http://www.w3.org/1999/xhtml">
+            <div>The quick brown fox jumps over the lazy dog. Pack my box with
+                five dozen liquor jugs</div>
+            </body>
+        </foreignObject>
+    </svg>
 </body>
 </html>

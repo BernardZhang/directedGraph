@@ -15,7 +15,6 @@ g.setDefaultEdgeLabel(function() { return {}; });
 // our nodes.
 
 g.setNode("start", { name: "start",  width: 144, height: 100 });
-g.setNode("end", { name: "end",  width: 144, height: 100 });
 
 g.setNode("kspacey",    { name: "kspacey",  width: 144, height: 100 });
 g.setNode("swilliams",  { name: "swilliams", width: 160, height: 100 });
@@ -29,6 +28,9 @@ g.setNode("bpitt1",      { name: "bpitt1",     width: 108, height: 100 });
 g.setNode("hford1",      { name: "hford1", width: 168, height: 100 });
 g.setNode("lwilson1",    { name: "lwilson1",   width: 144, height: 100 });
 g.setNode("kbacon1",     { name: "kbacon1",   width: 121, height: 100 });
+
+g.setNode("end", { name: "end",  width: 144, height: 100 });
+
 
 // Add edges to the graph.
 g.setEdge("kspacey",   "swilliams");
@@ -57,6 +59,31 @@ g.setEdge("kbacon", "lwilson1");
 g.setEdge("start", "kspacey");
 g.setEdge("hford1", "end");
 
+
+var edgeKeyMap = {};
+var nodes = window.jsonData.nodes;
+var edges = window.jsonData.edges;
+
+
+//for (var i = 0, len = nodes.length; i < len; i++) {
+//    g.setNode(nodes[i].id, nodes[i]);
+//}
+//
+//for (var i = 0, len = edges.length; i < len; i++) {
+//    g.setEdge(edges[i].source, edges[i].target);
+//    if (edgeKeyMap[edges[i].source + '-' + edges[i].target]
+//        || edgeKeyMap[edges[i].target + '-' + edges[i].source]) {
+//        if (edgeKeyMap[edges[i].source + '-' + edges[i].target]) {
+//            edgeKeyMap[edges[i].source + '-' + edges[i].target] += 1;
+//        }
+//        else {
+//            edgeKeyMap[edges[i].target + '-' + edges[i].source] += 1;
+//        }
+//    }
+//    else {
+//        edgeKeyMap[edges[i].source + '-' + edges[i].target] = 1;
+//    }
+//}
 
 
 var width = window.innerWidth / 2 - 10;
@@ -90,7 +117,7 @@ g.edges().forEach(function(e) {
         target: e.w,
         lineStyle: {
             normal: {
-                curveness: curveness
+                curveness: 0.3 || (edgeKeyMap[e.v + '-' + e.w] || edgeKeyMap[e.w + '-' + e.v]) > 1 ? 0.3 : 0
             }
         }
     });
